@@ -1,6 +1,5 @@
 ﻿using Amazon.S3;
 using Microsoft.AspNetCore.Mvc;
-using uploadToS3.Controllers;
 
 namespace UploadToS3.Controllers
 {
@@ -10,13 +9,13 @@ namespace UploadToS3.Controllers
     {
         private readonly IAmazonS3 _s3Client;
 
-        public UploadFileToS3(ILogger<WeatherForecastController> logger,
+        public UploadFileToS3(ILogger logger,
             IAmazonS3 s3Client
             )
         {
             _s3Client = s3Client;
         }
-        [HttpPost(template: "upload")]
+        [HttpPost]
         public async Task<IActionResult> UploadFile(IFormFile file)
         {
             if (file == null || file.Length <= 0)
